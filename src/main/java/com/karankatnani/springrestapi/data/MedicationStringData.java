@@ -6,18 +6,18 @@ import java.util.HashMap;
 public class MedicationStringData {
     private static int inputCount;
     private static int dosageCount;
-    private static HashMap<Integer,Integer> countByMed;
-    private static HashMap<String,Integer> medsBySize;
+    private static HashMap<Integer,Integer> countByMed = new HashMap<Integer,Integer>();
+    private static HashMap<String,Integer> medsBySize = new HashMap<String,Integer>();
 
-    public MedicationStringData(){
-        inputCount = 0;
-        dosageCount = 0;
+    static{
         medsBySize.put("S",0);
         medsBySize.put("M",0);
         medsBySize.put("L",0);
         medsBySize.put("XL",0);
         medsBySize.put("XXL",0);
         medsBySize.put("NA",0);
+        inputCount = 0;
+        dosageCount = 0;
     }
 
     public void storeStringData(MedicationString m){
