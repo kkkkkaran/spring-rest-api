@@ -1,17 +1,17 @@
 package com.karankatnani.springrestapi.domain;
 
 public class MedicationString {
-    private final int id;
+    private final String id;
     private final String bottleSize;
     private final int dosageCount;
 
-    public MedicationString(int id, String bottleSize, int dosageCount) {
+    public MedicationString(String id, String bottleSize, int dosageCount) {
         this.id = id;
         this.bottleSize = bottleSize;
         this.dosageCount = dosageCount;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

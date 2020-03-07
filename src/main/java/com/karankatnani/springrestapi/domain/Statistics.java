@@ -8,10 +8,10 @@ public class Statistics {
     private final int inputCount;
     private final int dosageCount;
     private final HashMap<String,Integer> medsBySize;
-    private final HashMap<Integer,Integer> countByMed;
+    private final HashMap<String,Integer> countByMed;
 
 
-    public Statistics(int inputCount, int dosageCount, HashMap<String, Integer> medsBySize, HashMap<Integer, Integer> countByMed) {
+    public Statistics(int inputCount, int dosageCount, HashMap<String, Integer> medsBySize, HashMap<String, Integer> countByMed) {
         this.inputCount = inputCount;
         this.dosageCount = dosageCount;
         this.medsBySize = medsBySize;
@@ -31,7 +31,7 @@ public class Statistics {
         return medsBySize;
     }
 
-    public HashMap<Integer, Integer> getCountByMed() {
+    public HashMap<String, Integer> getCountByMed() {
         return countByMed;
     }
 }

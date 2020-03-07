@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class MedicationStringData {
     private static int inputCount;
     private static int dosageCount;
-    private static HashMap<Integer,Integer> countByMed = new HashMap<Integer,Integer>();
+    private static HashMap<String,Integer> countByMed = new HashMap<String,Integer>();
     private static HashMap<String,Integer> medsBySize = new HashMap<String,Integer>();
 
     static{
@@ -20,7 +20,7 @@ public class MedicationStringData {
         dosageCount = 0;
     }
 
-    public void storeStringData(MedicationString m){
+    public boolean storeStringData(MedicationString m){
        inputCount++;
        dosageCount = dosageCount + m.getDosageCount();
        medsBySize.put(m.getBottleSize(),medsBySize.get(m.getBottleSize())+1);
@@ -30,6 +30,7 @@ public class MedicationStringData {
        else{
            countByMed.put(m.getId(),1);
        }
+       return true;
 
     }
     public Statistics statisticData(){
