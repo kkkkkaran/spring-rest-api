@@ -20,11 +20,18 @@ public class MedicationStringService {
     @PostMapping("/input")
     public ResponseEntity< String > stringHandler(@RequestBody String json) {
         MedicationStringService ms = new MedicationStringService();
-        ms.parseJson(json);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        boolean status = ms.parseJson(json);
+        if(status){
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }
+        //if invalid JSON
+        else{
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
     }
 
-    public boolean parseJson(String json){
+    private boolean parseJson(String json){
         ObjectMapper mapper = new ObjectMapper();
         try {
             Map<String, Object> map = mapper.readValue(json, Map.class);
@@ -43,6 +50,9 @@ public class MedicationStringService {
                     return false;
                 }
                 boolean successFlag = false;
+
+                //TODO Implement Unit of Work to ensure that data is committed only after transaction is completed, rollback otherwise
+
                 for (String medicationString : medicationStrings){
                     String[] split = medicationString.split("_");
                     if(split.length == 3) {
@@ -53,23 +63,16 @@ public class MedicationStringService {
                             msd.storeStringData(m);
                             successFlag = true;
                         }
-                        else{
-                            successFlag = false;
-                        }
-                    }
-                    else{
-                        successFlag = false;
                     }
                 }
-                if(successFlag == true){
+                //TODO UoW
+                if(successFlag){
                     return true;
                 }
-
             }
-
-        } catch (IOException e) {
+        } //TODO
+        catch (IOException e) {
         }
-
         return false;
     }
 }
