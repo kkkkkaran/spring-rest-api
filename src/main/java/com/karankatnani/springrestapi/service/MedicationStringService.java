@@ -34,7 +34,8 @@ public class MedicationStringService {
     private boolean parseJson(String json){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Map<String, Object> map = mapper.readValue(json, Map.class);
+
+            Map<String, Object> map = mapper.readValue(json, Map.class); //JSON string to Map using Jackson JSON parser
             if (map.containsKey("medicationStrings")){
                 String[] medicationStrings;
                 if(map.get("medicationStrings") instanceof ArrayList) {
